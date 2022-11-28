@@ -1,0 +1,412 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="main.master.cs" Inherits="WebApp.admin.main" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Maruti | ERP</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <%--<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">--%>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 3.3.7 -->
+
+    <style>
+        .center-block {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        .select2 {
+            width: 100% !important;
+        }
+    </style>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../plugins/iCheck/all.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../bower_components/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/ajax.css">
+    <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+  <style>
+      
+/*Custom*/
+.progressbar {
+    border: 1px solid #000;
+    color: #000;
+    display: block;
+    left: 43%;
+    padding: 20px;
+    position: absolute;
+    text-align: center;
+    top:25%;
+}
+
+.windowbackground {
+    background: url("./img/overlay.png") repeat scroll 0 0 transparent;
+    clear: both;
+    color: Red;
+    display: table-cell;
+    font-size: 12px;
+    font-weight: bold;
+    height: 100%;
+    left: 0;
+    padding-top: 20%;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    vertical-align: middle;
+    width: 100%;
+}
+    </style>
+  </style>
+</head>
+<body class="hold-transition skin-blue layout-top-nav">
+
+
+
+
+
+    <div class="wrapper" style="background-color: white">
+
+
+
+        <form id="form1" runat="server">
+
+            <header class="main-header" style="background-color: #150955;" >
+                <nav class="navbar navbar-static-top" style="
+    background: navy!important;
+    background-color: navy!important;" >
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="blankpage.aspx" class="navbar-brand"><b>Auto</b>VYN</a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+
+                                <SG:Navigation runat="server" ID="Menu" />
+                            </ul>
+
+
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                        <div class="navbar-custom-menu">
+                            <ul class="nav navbar-nav">
+                                <!-- Messages: style can be found in dropdown.less-->
+
+                                <!-- /.messages-menu -->
+
+
+                                <!-- Tasks Menu -->
+
+                                <!-- User Account Menu -->
+                                <li class="dropdown user user-menu">
+                                    <!-- Menu Toggle Button -->
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <!-- The user image in the navbar-->
+                                        <img src="default.png" class="user-image" alt="User Image">
+                                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                        <span class="hidden-xs"><%=  WebApp.LIBS.SiteSession.StringUserName %></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <!-- The user image in the menu -->
+                                        <li class="user-header">
+                                            <img src="default.png" class="img-circle" alt="User Image">
+                                            <p>
+                                                <%=  WebApp.LIBS.SiteSession.StringUserName %>
+                                            </p>
+                                        </li>
+                                        <!-- Menu Body -->
+
+                                        <!-- Menu Footer-->
+                                        <li class="user-footer">
+                                            <div class="pull-left">
+                                                <a onclick="redirectQR()" href="#" class="btn btn-default btn-flat">Scan WA QR</a>
+                                            </div>
+                                            <div class="pull-right">
+                                                <a href="logout.aspx" class="btn btn-default btn-flat">Sign out</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-custom-menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+
+
+            <!-- Left side column. contains the logo and sidebar -->
+
+
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper" <%= HttpContext.Current.Request.Url.AbsolutePath.ToString().Contains("blankpage")?"style='background-color: #ecf0f5'":"style='background-color:white'" %>>
+                <!-- Content Header (Page header) -->
+
+                <section class="content-header">
+                    <h1>
+                        <asp:ContentPlaceHolder runat="server" ID="FormName"></asp:ContentPlaceHolder>
+                    </h1>
+                    <ol class="breadcrumb">
+
+                        <li><a href="blankpage.aspx">Home<i class="fa fa-dashboard"></i></a></li>
+
+
+
+
+
+                    </ol>
+                </section>
+
+                <section class="content">
+
+
+                    <asp:ScriptManager ID="ScriptManager1"
+                        EnablePageMethods="true"
+                        EnablePartialRendering="true" runat="server" />
+                    <asp:ContentPlaceHolder runat="server" ID="FromContener">
+                    </asp:ContentPlaceHolder>
+
+                    <div class="modal fade" id="changepassword" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Change Your Password</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        <input type="text" class="form-control" id="newpassword" placeholder="New password" />
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a class="btn btn-default" onclick="changepassword()">Sumbit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                </section>
+                <!-- /.content -->
+            </div>
+
+        </form>
+
+
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b>1.0
+   
+            </div>
+            <strong>Copyright &copy; 2019-2021 <a href="#">Auto VYN</a>.</strong> All rights
+    reserved.
+ 
+        </footer>
+
+
+
+
+
+
+
+        <!-- /.tab-pane -->
+
+
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+
+
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/jquery-migrate-1.0.0.js"></script>
+    <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+    <script src="../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="../bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="../bower_components/select2/dist/js/select2.full.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <link href="css/fixedHeader.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery.treetable.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.fixedHeader.min.js"></script>
+    <script src="../plugins/iCheck/icheck.min.js"></script>
+    <link rel="stylesheet" href="css/jquery.treetable.css" />
+    <link rel="stylesheet" href="css/jquery.treetable.theme.default.css" />
+
+    <asp:ContentPlaceHolder runat="server" ID="Script">
+    </asp:ContentPlaceHolder>
+
+    <script type="text/javascript">
+
+
+
+        Sys.Application.add_load(BindEventsto);
+
+        function BindEventsto() {
+            if (!document.location.href.match(/[^\/]+$/)[0].includes("TallyGroupOutstanding.aspx") && !document.location.href.match(/[^\/]+$/)[0].includes( "TallyGroupBillwiseReport.aspx" )) {
+                $("select").select2();
+            }
+            $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+            $('.Date').datepicker({
+                autoclose: true
+            })
+            $('.Date').attr("autocomplete", "off");
+
+
+            $("div.warning,div.error,div.success,div.info").delay(3000).slideUp();
+
+            //$("#scriptmesssage").hide().delay(3000).fadeIn(2200);
+
+            $('.GVData').prepend($("<thead></thead>").append($('.GVData').find("tr:first"))).DataTable({
+                "scrollX": true,
+                fixedHeader: {
+                    header: true,
+                    footer: true
+                },
+                "paging": true,
+                "ordering": false,
+                "info": false,
+
+            });
+            $(".TreeListData").treetable({ expandable: true });
+            //$('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+            //    checkboxClass: 'icheckbox_flat-green',
+            //    radioClass: 'iradio_flat-green'
+            //})
+
+            //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(MasterRequestHandler);
+
+        }
+
+
+
+        function checkAll(objRef) {
+            var GridView = objRef.parentNode.parentNode.parentNode;
+
+            var inputList = GridView.getElementsByTagName("input");
+
+            for (var i = 0; i < inputList.length; i++) {
+
+                var row = inputList[i].parentNode.parentNode;
+
+                if (inputList[i].type == "checkbox" && objRef != inputList[i]) {
+
+                    if (objRef.checked) {
+
+                        inputList[i].checked = true;
+
+                    }
+
+                    else {
+
+
+                        inputList[i].checked = false;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        function changepassword() {
+
+            var newpassword = $('#newpassword').val();
+            $.ajax({
+                type: "POST",
+                url: "blankpage.aspx/changepassword",
+                data: "{'newpasssword':'" + newpassword + "'}",
+                contentType: "application/json",
+                datatype: "json",
+                success: function (responseFromServer) {
+                    var data = responseFromServer.d.split('<>');
+
+                    alert(data[1]);
+
+                    if (data[0] == "1") {
+                        $('#newpassword').val("")
+                        $('#changepassword').modal('hide');
+                    }
+
+                }
+            });
+
+        }
+        function showchangepassword() {
+
+            $('#changepassword').modal('show');
+
+        }
+
+
+        function redirectQR() {
+            var popup;
+            var left = (screen.width - 450) / 2; var top = (screen.height - 500) / 4;
+
+            var popup = window.open("http://.:3000/qrcode", "ResponceQR", 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + 450 + ', height=' + 400 + ', top=' + top + ', left=' + left);
+            popup.focus();
+        }
+
+
+    </script>
+
+    <style type="text/css">
+        input[type="search"] {
+            width: 70%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857;
+            color: #555;
+            background-color: #FFF;
+            background-image: none;
+            border: 1px solid #CCC;
+            border-radius: 4px;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+            transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+        }
+    </style>
+</body>
+</html>

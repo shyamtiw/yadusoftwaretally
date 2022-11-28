@@ -1,0 +1,31 @@
+{
+  "name": "almasaeed2010/adminlte",
+  "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 3",
+  "homepage": "https://adminlte.io/",
+  "type": "template",
+  "keywords": [
+    "css",
+    "js",
+    "less",
+    "responsive",
+    "back-end",
+    "template",
+    "theme",
+    "web",
+    "admin"
+  ],
+  "authors": [
+    {
+      "name": "Narendra Singh",
+      "email": "narendra.singh439@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "support": {
+    "issues": "#"
+  },
+  "require": {
+    "composer/installers": "1.*",
+    "bower-asset/jquery": ">=1.9.0 <4.0.0"
+  }
+}

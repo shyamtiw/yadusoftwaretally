@@ -1,0 +1,28 @@
+﻿.progressbar {
+    border: 1px solid #000;
+    color: #000;
+    display: block;
+    left: 43%;
+    padding: 20px;
+    position: absolute;
+    text-align: center;
+    top:25%;
+    background:#fff;
+}
+
+.windowbackground {
+    background: url("overlay.png") repeat scroll 0 0 transparent;
+    clear: both;
+    color: Red;
+    display: table-cell;
+    font-size: 12px;
+    font-weight: bold;
+    height: 100%;
+    left: 0;
+    padding-top: 20%;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    vertical-align: middle;
+    width: 100%;
+}

@@ -1,0 +1,433 @@
+<html lang="en"><head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> - nic.einvoice.web</title>
+    <!-- css files -->
+
+    <link href="css/common_style.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/font-awesome/css/all.css" rel="stylesheet">
+    <style>
+        .homeprofileiconul {
+            flex-direction: row;
+        }
+    </style>
+</head>
+<body>
+    <div class="body-content">
+<script src="js/jquery.js"></script>
+<!-- <script type="text/javascript"> -->
+    <!-- function displayLoadingSymbol() { -->
+        <!-- $('.loading').show(); -->
+    <!-- } -->
+    <!-- $(window).on('beforeunload', function () { -->
+        <!-- displayLoadingSymbol(); -->
+    <!-- }); -->
+    <!-- $(document).on('submit', 'form', function () { -->
+        <!-- displayLoadingSymbol(); -->
+    <!-- }); -->
+<!-- </script> -->
+
+
+
+<div class="container-fluid">
+    
+    <form method="post" class="InvoiceNumberform">
+        
+        <input type="hidden" class="hdnAction" id="hdnAction" name="BtnAction" value="Print">
+        <input type="hidden" class="hdnModeofPrint" id="hdnModeofPrint" name="ModeofPrint" value="ACK">
+        <input type="hidden" class="hdnJson" id="hdnJson" name="hdnJson" value="{&quot;AckNo&quot;:172110134088842,&quot;AckDt&quot;:&quot;2021-01-05 15:31:00&quot;,&quot;Irn&quot;:&quot;63186bdb23f2a41796ed0d79e139aa1c0cd1b143bf4fc63cebd184114cf2383b&quot;,&quot;SignedInvoice&quot;:&quot;eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ0NDQwNUM3ODFFNDgyNTA3MkIzNENBNEY4QkRDNjA2Qzg2QjU3MjAiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJSRVFGeDRIa2dsQnlzMHlrLUwzR0JzaHJWeUEifQ.eyJkYXRhIjoie1wiQWNrTm9cIjoxNzIxMTAxMzQwODg4NDIsXCJBY2tEdFwiOlwiMjAyMS0wMS0wNSAxNTozMTowMFwiLFwiSXJuXCI6XCI2MzE4NmJkYjIzZjJhNDE3OTZlZDBkNzllMTM5YWExYzBjZDFiMTQzYmY0ZmM2M2NlYmQxODQxMTRjZjIzODNiXCIsXCJWZXJzaW9uXCI6XCIxLjFcIixcIlRyYW5EdGxzXCI6e1wiVGF4U2NoXCI6XCJHU1RcIixcIlN1cFR5cFwiOlwiQjJCXCIsXCJSZWdSZXZcIjpcIk5cIixcIklnc3RPbkludHJhXCI6XCJOXCJ9LFwiRG9jRHRsc1wiOntcIlR5cFwiOlwiSU5WXCIsXCJOb1wiOlwiQy83NTkvMjAtMjFcIixcIkR0XCI6XCIwNS8wMS8yMDIxXCJ9LFwiU2VsbGVyRHRsc1wiOntcIkdzdGluXCI6XCIwOEFBQUNQNjY2ME4xWllcIixcIkxnbE5tXCI6XCJQUkVNIENBQkxFUyBQUklWQVRFIExURFwiLFwiVHJkTm1cIjpcIlBSRU0gQ0FCTEVTIFBSSVZBVEUgTFREXCIsXCJBZGRyMVwiOlwiUFJFTSBDQUJMRVMgUFJJVkFURSBMVEQgLE4gSCAxNjIgUGlwYWxpYSBLYWxhbiwgUmFpcHVyIE1hcndhclwiLFwiTG9jXCI6XCJQaXBhbGlhIEthbGFuXCIsXCJQaW5cIjozMDYzMDcsXCJTdGNkXCI6XCIwOFwifSxcIkJ1eWVyRHRsc1wiOntcIkdzdGluXCI6XCIwOEFBQkhWNjQzNEoxWlRcIixcIkxnbE5tXCI6XCJHWUFOQSBNRVRBTFNcIixcIlRyZE5tXCI6XCJHWUFOQSBNRVRBTFNcIixcIlBvc1wiOlwiMDhcIixcIkFkZHIxXCI6XCJFLTEwNSBST0FEIE5PLiA4LCBWS0kgQVJFQSxKQUlQVVIzMDIwMTNcIixcIkxvY1wiOlwiUmFqYXN0aGFuXCIsXCJQaW5cIjozMDIwMTMsXCJTdGNkXCI6XCIwOFwifSxcIkRpc3BEdGxzXCI6e1wiTm1cIjpcIlBSRU0gQ0FCTEVTIFBSSVZBVEUgTFREXCIsXCJBZGRyMVwiOlwiUFJFTSBDQUJMRVMgUFJJVkFURSBMVEQgLE4gSCAxNjIgUGlwYWxpYSBLYWxhbiwgUmFpcHVyIE1hcndhclwiLFwiTG9jXCI6XCJQaXBhbGlhIEthbGFuXCIsXCJQaW5cIjozMDYzMDcsXCJTdGNkXCI6XCIwOFwifSxcIlNoaXBEdGxzXCI6e1wiR3N0aW5cIjpcIjA4QUFCSFY2NDM0SjFaVFwiLFwiTGdsTm1cIjpcIkdZQU5BIE1FVEFMU1wiLFwiVHJkTm1cIjpcIkdZQU5BIE1FVEFMU1wiLFwiQWRkcjFcIjpcIkUtMTA1IFJPQUQgTk8uIDgsIFZLSSBBUkVBLEpBSVBVUjMwMjAxMyAoUkFKQVNUSEFOKVwiLFwiTG9jXCI6XCJKQUlQVVIgKFJBSilcIixcIlBpblwiOjMwMjAxMyxcIlN0Y2RcIjpcIjA4XCJ9LFwiSXRlbUxpc3RcIjpbe1wiSXRlbU5vXCI6MCxcIlNsTm9cIjpcIjFcIixcIklzU2VydmNcIjpcIk5cIixcIlByZERlc2NcIjpcIkFMVU1JTklVTSBXSVJFIFJPRCBFWENFRURJTkcgNk1NXCIsXCJIc25DZFwiOlwiNzYwNTExMDBcIixcIkJhcmNkZVwiOlwiNzYwNTExMDBcIixcIlF0eVwiOjE5LjUwNSxcIkZyZWVRdHlcIjowLFwiVW5pdFwiOlwiVE9OXCIsXCJVbml0UHJpY2VcIjoxNjI1MDAuMDAsXCJUb3RBbXRcIjozMTY5NTYyLjUwLFwiRGlzY291bnRcIjowLjAwLFwiUHJlVGF4VmFsXCI6MzE2OTU2Mi41MCxcIkFzc0FtdFwiOjMxNjk1NjIuNTAsXCJHc3RSdFwiOjE4LjAwLFwiSWdzdEFtdFwiOjAuMDAsXCJDZ3N0QW10XCI6Mjg1MjYwLjYzLFwiU2dzdEFtdFwiOjI4NTI2MC42MyxcIkNlc1J0XCI6MCxcIkNlc0FtdFwiOjAsXCJDZXNOb25BZHZsQW10XCI6MCxcIlN0YXRlQ2VzUnRcIjowLFwiU3RhdGVDZXNBbXRcIjowLFwiU3RhdGVDZXNOb25BZHZsQW10XCI6MCxcIk90aENocmdcIjowLFwiVG90SXRlbVZhbFwiOjM3NDAwODMuNzYsXCJPcmdDbnRyeVwiOlwiSU5cIixcIlByZFNsTm9cIjpcIm51bGxcIn1dLFwiVmFsRHRsc1wiOntcIkFzc1ZhbFwiOjMxNjk1NjIuNTAsXCJDZ3N0VmFsXCI6Mjg1MjYwLjYzLFwiU2dzdFZhbFwiOjI4NTI2MC42MyxcIklnc3RWYWxcIjowLjAwLFwiQ2VzVmFsXCI6MCxcIlN0Q2VzVmFsXCI6MCxcIkRpc2NvdW50XCI6MC4wMCxcIk90aENocmdcIjoyODA1LjA2LFwiUm5kT2ZmQW10XCI6MC4xOCxcIlRvdEludlZhbFwiOjM3NDI4ODkuMDAsXCJUb3RJbnZWYWxGY1wiOjM3NDI4ODkuMDB9LFwiUGF5RHRsc1wiOntcIk5tXCI6XCJHWUFOQSBNRVRBTFwiLFwiQWNjRGV0XCI6XCIwMDAwMFwiLFwiTW9kZVwiOlwiY3JlZGl0XCIsXCJGaW5JbnNCclwiOlwibnVsbFwiLFwiUGF5VGVybVwiOlwibnVsbFwiLFwiUGF5SW5zdHJcIjpcIm51bGxcIixcIkNyVHJuXCI6XCIxMjNcIixcIkRpckRyXCI6XCIxMjNcIixcIkNyRGF5XCI6MCxcIlBhaWRBbXRcIjowLFwiUGF5bXREdWVcIjowfX0iLCJpc3MiOiJOSUMifQ.upYfQOxutapu_Qsanl2cXi5sk15K2AjhEuJ9PP7fQPL5U9sbfg3GaL1iqlthefpVeIoCs781bzaiOYvqc5-w5102YP5UPOIkyQnNl5y4AtjUbJhtg_wCfyE8fZmZD_2XkgF8n1J9jo8PNNK-fBeDIOj28dOho0cwq3JVfhqKPnA0DeHkuf7mkgGQAyG--qNGIWjvkAiBxLuq-xUYlKQS_5E7UvdaW-hiurbMf24BWnoEuFtHkYYxGh6aeS186V6Xs7bIk6diPS9kwxZROAfHDVuw4DRQxxGJEinmCypyHYhwqKCJfoeSSUkZXAZPSEUSEo1MRfMhQNjzL1efwB6szA&quot;,&quot;SignedQRCode&quot;:&quot;eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ0NDQwNUM3ODFFNDgyNTA3MkIzNENBNEY4QkRDNjA2Qzg2QjU3MjAiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJSRVFGeDRIa2dsQnlzMHlrLUwzR0JzaHJWeUEifQ.eyJkYXRhIjoie1wiU2VsbGVyR3N0aW5cIjpcIjA4QUFBQ1A2NjYwTjFaWVwiLFwiQnV5ZXJHc3RpblwiOlwiMDhBQUJIVjY0MzRKMVpUXCIsXCJEb2NOb1wiOlwiQy83NTkvMjAtMjFcIixcIkRvY1R5cFwiOlwiSU5WXCIsXCJEb2NEdFwiOlwiMDUvMDEvMjAyMVwiLFwiVG90SW52VmFsXCI6Mzc0Mjg4OS4wMCxcIkl0ZW1DbnRcIjoxLFwiTWFpbkhzbkNvZGVcIjpcIjc2MDUxMTAwXCIsXCJJcm5cIjpcIjYzMTg2YmRiMjNmMmE0MTc5NmVkMGQ3OWUxMzlhYTFjMGNkMWIxNDNiZjRmYzYzY2ViZDE4NDExNGNmMjM4M2JcIixcIklybkR0XCI6XCIyMDIxLTAxLTA1IDE1OjMxOjAwXCJ9IiwiaXNzIjoiTklDIn0.eu9raGr5PtP5ppshwW0xJbF8wb8e-cukC-FgN2dv8zIMQ_7N2pDMOHYTnQMI4QxyfzkGAjJpqguSirBufBgfXFuhshna_1cWxVFovsl3LDlITisZf4-vwPOL6VhJT-7qUMqczCkr3g4aQoNckhLUvCjEZSzIJNVs1hOIQszwUSquJFnknS3u2t2zNur3C53oiVbMteHab0Gwj-_6fwVhoGr3FTnGdzMdremk2KishSpTHt6s4PsteTj4ZuAmq7TddU-HC-V81O3gf_4EnPMpfosq52VoyfCpo8rLwnDFc_sLadxlRCt6yDSTyFAFeiBAtJOc6osRYFLlHUt2Ehhzbg&quot;,&quot;Status&quot;:&quot;ACT&quot;,&quot;EwbNo&quot;:null,&quot;EwbDt&quot;:null,&quot;EwbValidTill&quot;:null,&quot;Remarks&quot;:null}">
+        <div>
+            <div class="form-row">
+                <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12 col-12 printheading">
+                    <h4 class="formtitle">
+                        e-Invoice Print
+                    </h4>
+                </div>
+               
+            </div>
+            <div class="divError">
+
+            </div>
+            <div class="divInvoiceNumber justify-content-center align-items-center" id="divInvoiceNumber" style="display: none;">
+                <div class="divmodeofPrint col-sm-12 col-md-12 col-lg-12 col-xl-12 col-12 text-center mt-2 mb-2 font-weight-bold">
+                    <label class="mr-3"> Based On :</label>
+                    <input type="radio" class="PrintOption" name="PrintOption" id="PrintOption" value="ACK">  Ack No. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" class="PrintOption" name="PrintOption" id="PrintOption" value="IRN">  IRN
+                </div>
+                <div class="divAckNo justify-content-center align-items-center form-inline" style="display: none;">
+                    <label class="mr-1 font-weight-bolder"> Enter Ack. No. :</label>
+                    <input type="text" class="txtinvoiceNumber invoicenumberfield form-control" id="txtinvoiceNumber" maxlength="20" onkeypress="return isNumberKey(event)" name="InvoiceView.InvoiceDetails.EInvNo" value="172110134088842">
+                    <button class="btngo btn btn-primary ml-2 mr-2" id="btngo" name="submit" value="Print">Go</button>
+                    <a class="btn btn-danger" href="/Home/MainMenu"> Exit</a>
+                </div>
+                <div class="divIRN justify-content-center align-items-center form-inline" style="display: none;">
+                    <label class="mr-1 font-weight-bolder"> Enter IRN. :</label>
+                    <input type="text" class="txtinvoiceNumber form-control" id="IRNtxtinvoiceNumber" maxlength="66" name="InvoiceView.InvoiceDetails.Irn" value="63186bdb23f2a41796ed0d79e139aa1c0cd1b143bf4fc63cebd184114cf2383b">
+                    <button class="btngo btn btn-primary ml-2 mr-2" id="btngo" name="submit" value="Print">Go</button>
+                    <a class="btn btn-danger" href="/Home/MainMenu"> Exit</a>
+                </div>
+            </div>
+
+            <div id="divInvoicePrint" class="divInvoicePrint" style="display: flex;">
+                <input type="hidden" id="qrCodeGen" name="QrCodeValue" value="eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ0NDQwNUM3ODFFNDgyNTA3MkIzNENBNEY4QkRDNjA2Qzg2QjU3MjAiLCJ0eXAiOiJKV1QiLCJ4NXQiOiJSRVFGeDRIa2dsQnlzMHlrLUwzR0JzaHJWeUEifQ.eyJkYXRhIjoie1wiU2VsbGVyR3N0aW5cIjpcIjA4QUFBQ1A2NjYwTjFaWVwiLFwiQnV5ZXJHc3RpblwiOlwiMDhBQUJIVjY0MzRKMVpUXCIsXCJEb2NOb1wiOlwiQy83NTkvMjAtMjFcIixcIkRvY1R5cFwiOlwiSU5WXCIsXCJEb2NEdFwiOlwiMDUvMDEvMjAyMVwiLFwiVG90SW52VmFsXCI6Mzc0Mjg4OS4wMCxcIkl0ZW1DbnRcIjoxLFwiTWFpbkhzbkNvZGVcIjpcIjc2MDUxMTAwXCIsXCJJcm5cIjpcIjYzMTg2YmRiMjNmMmE0MTc5NmVkMGQ3OWUxMzlhYTFjMGNkMWIxNDNiZjRmYzYzY2ViZDE4NDExNGNmMjM4M2JcIixcIklybkR0XCI6XCIyMDIxLTAxLTA1IDE1OjMxOjAwXCJ9IiwiaXNzIjoiTklDIn0.eu9raGr5PtP5ppshwW0xJbF8wb8e-cukC-FgN2dv8zIMQ_7N2pDMOHYTnQMI4QxyfzkGAjJpqguSirBufBgfXFuhshna_1cWxVFovsl3LDlITisZf4-vwPOL6VhJT-7qUMqczCkr3g4aQoNckhLUvCjEZSzIJNVs1hOIQszwUSquJFnknS3u2t2zNur3C53oiVbMteHab0Gwj-_6fwVhoGr3FTnGdzMdremk2KishSpTHt6s4PsteTj4ZuAmq7TddU-HC-V81O3gf_4EnPMpfosq52VoyfCpo8rLwnDFc_sLadxlRCt6yDSTyFAFeiBAtJOc6osRYFLlHUt2Ehhzbg">
+                <input type="hidden" id="barcodeGen" name="BarCode" value="172110134088842">
+                <input type="hidden" id="barcodeIrnGen" name="InvoiceView.InvoiceDetails.Irn" value="63186bdb23f2a41796ed0d79e139aa1c0cd1b143bf4fc63cebd184114cf2383b">
+                <input type="hidden" id="hdnack" name="InvoiceView.InvoiceDetails.EInvNo" value="172110134088842">
+
+
+<div class="container-fluid maindivprint">
+    <div class="printdetailsdiv">
+        <div class="ScrollDivPrint">
+                <div class="divHeading form-row mb-1">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 col-8 p-1 mt-xl-3 mt-lg-3 mt-md-3 mt-sm-3">
+                        <h3 class="govtofindiatxt font-weight-bold mt-xl-5 mt-lg-5 mt-md-5 mt-sm-4 pt-3"><span>08AAACP6660N1ZY <br> PREM CABLES PRIVATE LTDS</span></h3>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-4 text-right p-1">
+                        <div id="plBarCodeNew"><img src="data:image/gif;base64,cmFhYW0=" width="210" height="210"></div>
+                    </div>
+                </div>
+            <input type="hidden" id="hdnEwbErrorMsg" name="InfoDtlsErrorMessage" value="">
+            <div class="card">
+                <div class="card-header">
+                    <strong>1.e-Invoice Details</strong>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5 col-md-4 col-sm-4 p-1">
+                            <label class="mt-2 mr-1" style="float:left;"><strong>IRN :</strong></label><div class="text-wrap">63186bdb23f2a41796ed0d79e139aa1c0cd1b143bf4fc63cebd184114cf2383b</div>
+                        </div>
+                        <div class="col-xl-4 col-lg-3 col-md-4 col-sm-4 mt-2 p-1">
+                            <label class="font-weight-bold ml-xl-5 pl-xl-4"><span class="mr-xl-5 pr-xl-3">Ack. No  </span> <span class="mr-2">:</span></label> 172110134088842
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 mt-2 p-1">
+                            <label class="font-weight-bold ml-xl-4 pl-xl-3"><span class="mr-xl-1 pr-xl-5 mr-lg-3 pr-lg-4">Ack. Date</span><span class="mr-2"> :</span> </label> 05-01-2021 15:31:00
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <strong>2.Transaction Details</strong>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 p-1">
+                            <input type="hidden" value="N">
+                                <label class="font-weight-bold"><span class="mr-xl-5 pr-xl-3">Category </span><span class="mr-2">: </span></label> B2B
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 p-1">
+                            <label class="ml-xl-5 pl-xl-3 ml-lg-4 pl-lg-5 font-weight-bold"><span class="mr-xl-2 pr-xl-3">Document No</span> <span class="mr-2">:</span></label>  C/759/20-21
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 p-1">
+                                <div class="IgstOnIntra">
+                                        <label class="ml-xl-4 pl-xl-2 font-weight-bold"><span class="mr-xl-3">IGST on INTRA</span><span class="mr-xl-2"> : </span><span>No</span></label>
+                                </div>
+
+                        </div>
+                    </div>
+                    <hr class="mt-1 mb-1">
+                    <div class="row mb-2">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 p-1">
+                            <input type="hidden" value="INV">
+                            <label class="font-weight-bold"><span class="mr-xl-2 pr-xl-1">Document Type </span><span class="mr-2">:</span> </label> Tax Invoice
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 p-1">
+                            <label class="font-weight-bold ml-xl-3 pl-xl-5 ml-lg-4 pl-lg-5"><span class="pr-xl-2"> Document Date </span><span class="mr-2">: </span></label> 05-01-2021
+                        </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 p-1">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <strong>3.Party Details </strong>
+                </div>
+                <div class="card-body">
+
+                    <div class="row mb-0">
+                            <div class="DivBfrom col-sm-6 border-right p-1">
+                                <h6 class="mb-0"><strong>Seller </strong></h6>
+
+                                <p><label for="SellerDtls.Gstin">GSTIN : </label> 08AAACP6660N1ZY</p>
+                                <p>
+                                    PREM CABLES PRIVATE LTD <br>
+                                    PREM CABLES PRIVATE LTD ,N H 162 Pipalia Kalan, Raipur Marwar  &nbsp;  <br>
+                                    Pipalia Kalan <br>
+                                    306307 &nbsp; RAJASTHAN <br>
+                                     &nbsp; 
+                                </p>
+                            </div>
+                            <div class="divBto col-sm-6 p-1">
+                                <h6 class="mb-0"><strong>Purchaser </strong></h6>
+                                <p><label for="SellerDtls.Gstin">GSTIN : </label> 08AABHV6434J1ZT</p>
+                                <p>
+                                    GYANA METALS <br>
+                                    E-105 ROAD NO. 8, VKI AREA,JAIPUR302013 &nbsp;  <br>
+                                    Rajasthan Place of Supply: RAJASTHAN <br>
+                                    302013 &nbsp; RAJASTHAN <br>
+                                     &nbsp; 
+                                </p>
+                            </div>
+                    </div>
+                    <div class="divDisShip row mb-0">
+                            <div class="divDis col-sm-6 border-right p-1">
+                                <h6 class="mb-0"><strong>Dispatcher </strong></h6>
+                                <p>
+                                    PREM CABLES PRIVATE LTD <br>
+                                    PREM CABLES PRIVATE LTD ,N H 162 Pipalia Kalan, Raipur Marwar &nbsp;  <br>
+                                    Pipalia Kalan <br>
+                                    306307 &nbsp; RAJASTHAN
+                                </p>
+                            </div>
+                            <div class="divShip col-sm-6 p-1">
+                                <h6 class="mb-0"><strong>Shipping </strong></h6>
+                                <p><label for="SellerDtls.Gstin">GSTIN : </label> 08AABHV6434J1ZT</p>
+                                <p>
+                                    GYANA METALS <br>
+                                    E-105 ROAD NO. 8, VKI AREA,JAIPUR302013 (RAJASTHAN) &nbsp;  <br>
+                                    JAIPUR (RAJ) <br>
+                                    302013 &nbsp; RAJASTHAN
+                                </p>
+                            </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <strong>4.Goods Details</strong>
+                </div>
+                <div class="card-body">
+
+                    <div class="row mb-0 mt-0">
+                        <div class="col-xl-12 table-responsive p-1">
+                                    <table class="table table-striped table-bordered table-responsive-sm" id="tblItems">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">SlNo</th>
+                                                <th scope="col">Product Description</th>
+                                                <th scope="col">HSN Code</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Unit</th>
+                                                <th scope="col">
+                                                    Unit  Price(Rs)
+                                                </th>
+                                                <th>
+                                                    Discount(Rs)
+                                                </th>
+                                                <th scope="col">
+                                                    Taxable <br>
+                                                    Amount(Rs)
+                                                </th>
+                                                <th scope="col">
+                                                    Tax Rate (GST+Cess  |<br>
+                                                    State Cess+Cess Non.Advol)
+                                                </th>
+                                                <th>
+                                                    Other<br>
+                                                    charges(Rs)
+                                                </th>
+                                                <th scope="col">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                    <td> 1 </td>
+                                                    <td> AAAALUMINIUM WIRE ROD EXCEEDING 6MM </td>
+                                                    <td> 76051100 </td>
+                                                    <td> 19.505 </td>
+                                                    <td> TON </td>
+                                                    <td class="text-right"> 162500.00 </td>
+                                                    <td class="text-right"> 0.00 </td>
+                                                    <td class="text-right"> 3169562.50 </td>
+                                                    <td class="text-right">
+                                                        18.00+0.00|<br>
+                                                        0.00+0
+                                                    </td>
+                                                    <td class="text-right">0</td>
+                                                    <td class="text-right">3740083.76</td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                        </div>
+                    </div>
+
+                    <div class="row mb-0 mt-0">
+                        <div class="col-xl-12 table-responsive p-1">
+                            <table border="0" class="table table-striped  table-bordered">
+                                <tbody><tr>
+                                    <th><label for="ValDtls.AssVal"> Tax'ble Amt </label>  </th>
+                                    <th><label for="ValDtls.CgstVal"> CGST <br>Amt </label> </th>
+                                    <th><label for="ValDtls.SgstVal"> SGST <br>Amt  </label></th>
+                                    <th> <label for="ValDtls.IgstVal">IGST <br>Amt  </label> </th>
+                                    <th><label for="ValDtls.CesVal"> CESS <br>Amt </label></th>
+                                    <th><label for="ValDtls.StCesVal"> State CESS <br>Amt </label></th>
+                                    <th><label> Discount </label> </th>
+                                    <th><label> Other<br> Charges </label> </th>
+                                    <th><label for="ValDtls.RndOffAmt"> Round off <br>Amt </label></th>
+                                    <th><label for="ValDtls.TotInvVal">Total Inv.<br> Amt </label></th>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:right">3169562.50 </td>
+                                    <td style="text-align:right">285260.63 </td>
+                                    <td style="text-align:right">285260.63 </td>
+                                    <td style="text-align:right">0.00 </td>
+                                    <td style="text-align:right">0 </td>
+                                    <td style="text-align:right">0</td>
+                                    <td style="text-align:right">0.00</td>
+                                    <td style="text-align:right">2805.06 </td>
+                                    <td style="text-align:right">0.18</td>
+                                    <td style="text-align:right">3742889.00 </td>
+                                </tr>
+                            </tbody></table>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-8 col-lg-6 col-xl-6 col-12 col-md-5 p-1">
+                            <div class="form-inline">
+                                <label for="SellerDtls.Gstin" class="font-weight-bold"><span class="pr-xl-1 pr-lg-1 pr-md-2 pr-sm-1">Generated By</span> <span class="mr-2">: </span></label>
+                                08AAACP6660N1ZY
+                            </div>
+                            <div class="form-inline" id="DivPrint"><label class=" font-weight-bold"><span class="mr-xl-3 pr-xl-3 mr-lg-3 pr-lg-3 mr-md-1 pr-md-1 mr-sm-3 pr-sm-3">Print Date</span> <span class="mr-2">:</span></label> 06-01-2021 12:48:21</div>
+                        </div>
+
+                        <div class="DivBarCode col-sm-4 col-lg-2 col-xl-2 col-12 col-md-3 p-1">
+                           
+                        </div>
+                                <div class="col-sm-12 col-lg-4 col-xl-4 col-12 col-md-4 text-right p-1">
+                                    <img src="img/e-sign.png" class="mr-5">
+                                    <div>
+                                        Digitally Signed by NIC-IRP <br> on:
+                                        <span style="text-decoration:underline;">
+                                            05-01-2021 15:31:00
+                                        </span>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+                    <div class="divConfirm form-row" style="display: none;">
+                        <div class="col-sm-12 col-lg-12 col-lg-12 col-xs-12 text-sm-right p-1">
+                            <button type="submit" name="submit" class="btn btn-primary" value="Save">Confirm</button>
+                            <button class="btnBack btn btn-danger" id="btnBack">Back</button>
+                        </div>
+                    </div>
+        </div>
+    </div>
+    <br>
+    <br>
+            <div class="divPrintBtn form-row printpagebtns text-right">
+                    <div class="col-sm-12 col-lg-6 col-xl-6 col-12 col-md-12 form-inline ml-auto p-1">
+                        <button class="btnPrint btn btn-info btnprintview mr-2" onclick="window.print(); return false;" id="btnPrint">Print <i class="fa fa-print"></i></button>
+                               
+                    </div>
+
+                <br>
+                <br>
+            </div>
+    <br>
+</div>
+
+
+            </div>
+            <br>
+            <div class="container-fluid divCancelReason" id="divCancelReason" style="display: none;">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-12 col-xl-6 col-sm-8 col-md-8 col-lg-6">
+                        <div class="card divcancelcard">
+                            <div class="card-body mt-3 mb-2">
+                                <div class="form-row">
+                                    <div class="col-sm-4 col-lg-4 col-xl-4 col-md-4 col-xs-12">
+                                        <label class="mt-2"><strong>Cancel Reason :</strong></label>
+                                    </div>
+                                    <div class="col-sm-8 col-lg-8 col-xl-8 col-md-8 col-xs-12">
+                                        <select id="selBToStcd" class="form-control input-validation-error" data-val="true" data-val-regex="The field Cancel Reason must match the regular expression '([1-4]{1})?'." data-val-regex-pattern="([1-4]{1})?" data-val-required="The Cancel Reason field is required." name="InvoiceCancelDetails.CnlRsn"></select>
+                                        <span class="text-danger field-validation-error" data-valmsg-for="InvoiceCancelDetails.CnlRsn" data-valmsg-replace="true">The Cancel Reason field is required.</span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-sm-4 col-lg-4 col-xl-4 col-md-4 col-xs-12">
+                                        <label class="mt-2"><strong>Remarks :</strong></label>
+                                    </div>
+                                    <div class="col-sm-8 col-lg-8 col-xl-8 col-md-8 col-xs-12">
+                                        <textarea class="form-control txtCnlRemarak input-validation-error" data-val="true" data-val-required="The Cancel Remark field is required." id="InvoiceCancelDetails_CnlRem" name="InvoiceCancelDetails.CnlRem"></textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-row">
+                                    <div class="col-sm-12 col-lg-12 col-xl-12 col-xs-12 text-center">
+                                        <button class="btn btn-primary" name="submit" value="Cancel" id="btnSubmit">Submit</button>
+                                        <a class="btn btn-danger" href="/Home/MainMenu"> Exit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8CcB8UXa_RBHgrn_8bB29nkj9ybToRJga31bO8ptEwxZ7DR_wKh6PYPfT3TWrL9uqiMl8hdhiS3dFFF2Gs2jsVQ3B710UgBZCHR3fjIIJkUJWr8g5--Bk1fHdzPyuzNaQ92q3FVD-TjriF7dGw0KZZRYXy4zzXQRlGgym-gCpmYE2UbaflNwbTnXLdukGkee6Q"></form>
+</div>
+<div class="modal fade" id="MyPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errortit"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+
+    <!-- Lower Footer -->
+    
+    <!-- /Lower Footer -->
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    
+
+    <link href="css/eInvoicePrint.css" rel="stylesheet">
+    <script src="js/ValidateInvoice.js"></script>
+    <link href="css/Print.css" rel="stylesheet" media="print">
+    <script src="js/jqueryui/jquery-ui.js"></script>
+    <script src="js/qrcode.js"></script>
+    <script src="js/jquery-barcode.min.js"></script>
+    <link href="js/jqueryui/jquery-ui.css" rel="stylesheet">
+
+       
+    </script>
+
+
+
+
+</body></html>
